@@ -1,9 +1,10 @@
 const http = require("http");
-const Color = require("colors");
+const data = require("./data");
 
 http
   .createServer((req, res) => {
-    res.write("<h1>this is demo for create server</h1>");
+    res.writeHead(200, { "content-type": "application/json" });
+    res.write(JSON.stringify(data));
     res.end();
   })
-  .listen(4500);
+  .listen(5000);
