@@ -1,10 +1,38 @@
-const http = require("http");
-const data = require("./data");
+const express = require("express");
+const path = require("path");
+const app = express();
 
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { "content-type": "application/json" });
-    res.write(JSON.stringify(data));
-    res.end();
-  })
-  .listen(5000);
+app.set("view engine", "ejs");
+
+const publicPath = path.join(__dirname, "public");
+
+// app.use(express.static(publicPath));
+
+//static html page routing
+app.get("", (req, resp) => {
+  resp.sendFile(`${publicPath}/index.html`);
+});
+
+app.get("/about", (req, resp) => {
+  resp.sendFile(`${publicPath}/about.html`);
+});
+
+// app.get("*", (req, resp) => {
+//   resp.sendFile(`${publicPath}/error404.html`);
+// });
+
+//route dynamic ejs page
+app.get("/profile", (req, resp) => {
+  const user = {
+    name: "Tirth",
+    email: "tirth@gmail.com",
+    age: "20",
+  };
+  resp.render("profile", { user });
+});
+
+app.get("/login", (req, resp) => {
+  resp.render("login");
+});
+
+app.listen(5000);
