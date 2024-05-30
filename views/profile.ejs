@@ -6,14 +6,18 @@
 </head>
 
 <body>
-    <%- include('common/header')%>
-        <h1>Welcome to our profile page
-            <%= user.name%>
-        </h1>
-        <p>Email: <%= user.email%>
-        </p>
-        <p>Age: <%= user.age%>
-        </p>
+    <%- include('common/header') %>
+
+        <div>
+            <% user.forEach((item)=> { %>
+                <h3>Welcome to our profile page, <%= item.name %>
+                </h3>
+                <p>Email: <%= item.email %>
+                </p>
+                <p>Age: <%= item.age %>
+                </p>
+                <% }); %>
+        </div>
 </body>
 
 </html>

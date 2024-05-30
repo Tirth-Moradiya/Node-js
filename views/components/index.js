@@ -23,11 +23,18 @@ app.get("/about", (req, resp) => {
 
 //route dynamic ejs page
 app.get("/profile", (req, resp) => {
-  const user = {
-    name: "Tirth",
-    email: "tirth@gmail.com",
-    age: "20",
-  };
+  const user = [
+    {
+      name: "Tirth",
+      email: "tirth@gmail.com",
+      age: "20",
+    },
+    {
+      name: "TM",
+      email: "tm@gmail.com",
+      age: "30",
+    },
+  ];
   resp.render("profile", { user });
 });
 
